@@ -1,7 +1,7 @@
 // Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require ('fs');
-const shapesJS = require('./lib/shapes');
+const {Triangle, Circle, Square} = require('./lib/shapes');
 
 // Array of questions for user input
 const questions = [
@@ -12,26 +12,43 @@ const questions = [
     }, {
         type: 'input',
         message: 'Please enter the text color you would like, either by color keyword or hexadecimal color code.',
-        name: 'textcolor'
+        name: 'textColor'
     }, {
         type: 'list',
         message: 'Please choose a shape for your logo:',
         name: 'shape',
         choices: [
-            'circle',
-            'triangle',
-            'square'
+            'Circle',
+            'Triangle',
+            'Square'
         ]
     }, {
         type: 'input',
         message: 'Please enter the shape color you would like, either by color keyword or hexadecimal color code.',
-        name: 'shapecolor'
+        name: 'shapeColor'
     }
 ];
 
+// Function to make logo
+const makeLogo = (userInput) => {
+    if (userInput.shape === 'Triangle') {
+        let userLogo = new Triangle (userInput.text, userInput.textColor, userInput.shapeColor)
+        return userLogo.render()
+    }
+    if (userInput.shape === 'Circle') {
+        let userLogo = new Circle (userInput.text, userInput.textColor, userInput.shapeColor)
+        return userLogo.render()
+    }
+    if (userInput.shape === 'Square') {
+        let userLogo = new Square (userInput.text, userInput.textColor, userInput.shapeColor)
+        return userLogo.render()
+    }
+}
+
 // Function to create SVG file
-const writeToFile = (data) => {
-    fs.writeFile('logo.svg', shapesJS(data), (err) => {
+const writeToFile = (userInput) => {
+    const Logo = makeLogo(userInput);
+    fs.writeFile('logo.svg', Logo, (err) => {
         err ? console.error(err) : console.log('Generated logo.svg')
     })
 }
@@ -82,14 +99,17 @@ const init = () => {
         if (text.length > 3) {
             console.error('Text must be 3 characters or less. Please try again');
             init(); // prompt the user to enter input again
+            return;
         // validation check for text color input
-        } else if (!isValidColorKeyword(textcolor) && !isValidHexCode(textcolor)) {
+        } else if (!isValidColorKeyword(userInput.textColor) && !isValidHexCode(userInput.textColor)) {
             console.error('Invalid text color input. Please enter a valid color keyword or hexadecimal color code.');
             init(); // prompt the user to enter input again
+            return;
         // validation check for shape color input
-        } else if (!isValidColorKeyword(shapecolor) && !isValidHexCode(shapecolor)) {
+        } else if (!isValidColorKeyword(userInput.shapeColor) && !isValidHexCode(userInput.shapeColor)) {
             console.error('Invalid shape color input. Please enter a valid color keyword or hexadecimal color code.');
             init(); // prompt the user to enter input again
+            return;
         } else {
             writeToFile(userInput);
         }
