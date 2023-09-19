@@ -57,7 +57,7 @@ In order to use this application, open up your terminal (on Mac) or Git Bash (on
 
 ## Demo
 
-Please see a demo of my application [here](https://drive.google.com/file/d/1ymB5xPjwDnNUlaStpg9w4nJ8Qoi1KO-5/view?usp=sharing).
+Please see a demo of my application [here](https://drive.google.com/file/d/1jpLqCreCzfTKux7VB6ohjFCcrYvUZHDz/view?usp=sharing).
 
 ## Credits
 
