@@ -45,10 +45,10 @@ Please download Git BASH at https://gitforwindows.org/ if you are a Windows user
 
 Please also install the following programs: 
 
-    * node.js at https://nodejs.dev/en/download/
-    * Inquirer.js Version 8.2.4 at https://www.npmjs.com/package/inquirer
-    * VScode at https://code.visualstudio.com/download
-    * Jest Version 29.7.0 at https://jestjs.io/
+     - Node.js at https://nodejs.dev/en/download/
+     - Inquirer.js Version 8.2.4 at https://www.npmjs.com/package/inquirer
+     - VScode at https://code.visualstudio.com/download
+     - Jest Version 29.7.0 at https://jestjs.io/
 
 
 ## Usage
